@@ -21,16 +21,16 @@ public class CardDeliveryTest {
         public void shouldBeSuccessCompleted() {
         open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Казань");
-        String planningDate = generateDate (4,"dd.MM.yy");
+        String planningDate = generateDate (4,"dd.MM.yyyy");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME), Keys.DELETE);
         $("[data-test-id='date'] input").setValue(planningDate);
-        $("[data-test-id='name'] input").setValue("ван Петров");
+        $("[data-test-id='name'] input").setValue("Иван Петров");
         $("[data-test-id='phone'] input").setValue("+79600000000");
         $("[data-test-id='agreement']").click();
         $("button.button").click();
         $(".notification__content")
                 .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.exactText("Успешно! Встреча успешно запланирована на " + planningDate));
+                .shouldHave(Condition.exactText("Успешно! Встреча успешно забронирована на " + planningDate));
     }
 }
 
